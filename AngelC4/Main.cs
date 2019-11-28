@@ -38,6 +38,7 @@ namespace AngelC4
             this.WindowState = FormWindowState.Maximized;
         }
 
+        //TabControl1
         private void BtnWindows_Click(object sender, EventArgs e)
         {
 
@@ -70,12 +71,15 @@ namespace AngelC4
             MessageBox.Show("Se cerro la conexion.");
         }
 
+
         private void Timer1_Tick(object sender, EventArgs e)
         {
             CincoSegundos = true;
             timer1.Stop();
             BtnWindows_Click(sender, e);
         }
+
+        //TabControl2
 
         private void BtnInsertar_Click(object sender, EventArgs e)
         {
@@ -111,6 +115,8 @@ namespace AngelC4
 
             conexion.Close();
         }
+
+        //TabControl3
 
         private void BtnSelect_Click(object sender, EventArgs e)
         {
@@ -154,6 +160,7 @@ namespace AngelC4
 
         }
 
+        //TabControl4
         private void BtnSearch1_Click(object sender, EventArgs e)
         {
             conexion.Open();
@@ -168,6 +175,7 @@ namespace AngelC4
 
             //Si en el del comando de consulta se recupero un registro de la tabla se hace la llamada al metodo read
             //Y se despliega el resultado
+
             if (registro.Read())
             {
                 lbIdOficial.Text = registro["IdOficial"].ToString();
@@ -179,6 +187,7 @@ namespace AngelC4
             conexion.Close();
 
         }
+        //TabControl4 - Parametros
 
         private void BtnSearch2_Click(object sender, EventArgs e)
         {
@@ -213,6 +222,8 @@ namespace AngelC4
             conexion.Close();
         }
 
+        //TabControl5 -
+        //BUSCAR
         private void BtnSearchDelete_Click(object sender, EventArgs e)
         {
             conexion.Open();
@@ -241,7 +252,7 @@ namespace AngelC4
 
             conexion.Close();
         }
-
+        //DELETE
         private void BtnDeleteDelete_Click(object sender, EventArgs e)
         {
             conexion.Open();
@@ -267,6 +278,8 @@ namespace AngelC4
             btnDeleteDelete.Enabled = false;
         }
 
+        //TabControl6 -
+        //Search
         private void BtnSearchUpdate_Click(object sender, EventArgs e)
         {
             conexion.Open();
@@ -286,7 +299,7 @@ namespace AngelC4
                 MessageBox.Show("No existe un empleado con el IdOficial ingresado");
             conexion.Close();
         }
-
+        //Update
         private void BtnUpdateUpdate_Click(object sender, EventArgs e)
         {
             conexion.Open();
@@ -303,9 +316,18 @@ namespace AngelC4
 
             SqlCommand comando = new SqlCommand(cadena, conexion);
             int cant;
-            MessageBox.Show(cadena);
+            //MessageBox.Show(cadena);
             cant = comando.ExecuteNonQuery();
-            if (cant == 1)
+            
+
+            conexion.Close();
+
+            if (cant == 0)
+            {
+                MessageBox.Show("No existe un empleado con el IdOficial ingresado");
+
+            }
+            else
             {
                 MessageBox.Show("Se modificaron los datos del empleado");
                 txtIdOficialUpdate.Text = "";
@@ -313,16 +335,15 @@ namespace AngelC4
                 cbPuestoUpdate.SelectedIndex = 0;
                 txtNIdOficialUpdate.Text = "";
                 
-            }
-            else
-                MessageBox.Show("No existe un empleado con el IdOficial ingresado");
 
-            conexion.Close();
+            }
             btnUpdateUpdate.Enabled = false;
 
 
         }
 
+        //TabControl7
+        //Insertar con parametros
         private void Button1_Click(object sender, EventArgs e)
         {
             conexion.Open();
@@ -364,6 +385,7 @@ namespace AngelC4
             conexion.Close();
         }
 
+        //Fill out combobox collection
         public void EstablecerComboBox()
         {
             cbPuesto.Items.Clear();
@@ -386,6 +408,7 @@ namespace AngelC4
 
             conexion.Close();
         }
+        //StorageDVG - TabControl 8
 
         private void BtnConsultaStoreDgv_Click(object sender, EventArgs e)
         {
@@ -431,6 +454,8 @@ namespace AngelC4
             
         }
 
+        //TabControl 9 Parameters IN
+
         private void Button2_Click(object sender, EventArgs e)
         {
             txtIdOficialStoreParamIn.MaxLength = 10;
@@ -460,7 +485,39 @@ namespace AngelC4
                 dgvStoreParamIn.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             }
+
+            /*
+             txtIdOficialStoreParamIn.MaxLength = 10;
+            {
+                SqlCommand cmd = new SqlCommand("EmpleadosWhere", conexion);
+
+                //specify that it is a sored procedure and not a normal proc
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //list the parameters required and what they should be
+                cmd.Parameters.AddWithValue("@IdOficial", txtIdOficialStoreParamIn.Text);
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                conexion.Close();
+
+                using (SqlDataAdapter adap = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+                    adap.Fill(dt);
+                    dgvStoreParamIn.DataSource = dt;
+                }
+
+                dgvStoreParamIn.ReadOnly = true;
+                dgvStoreParamIn.AllowUserToAddRows = false;
+                lbRowsCountdgvStoredParamIn.Text = dgvStoreParamIn.Rows.Count.ToString();
+                dgvStoreParamIn.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+            }
+             */
         }
+
+        //TabControl 10 Parameters OUT
 
         private void button2_Click_1(object sender, EventArgs e)
         {

@@ -1038,7 +1038,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.03802F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.96198F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 274F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 275F));
             this.tableLayoutPanel2.Controls.Add(this.label26, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.Consultar, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtIdOficialStoreParamIn, 1, 0);
@@ -1064,7 +1064,7 @@
             this.Consultar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Consultar.FlatAppearance.BorderSize = 0;
             this.Consultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Consultar.Location = new System.Drawing.Point(242, 3);
+            this.Consultar.Location = new System.Drawing.Point(241, 3);
             this.Consultar.Name = "Consultar";
             this.Consultar.Size = new System.Drawing.Size(91, 91);
             this.Consultar.TabIndex = 0;
@@ -1073,7 +1073,7 @@
             // 
             // txtIdOficialStoreParamIn
             // 
-            this.txtIdOficialStoreParamIn.Location = new System.Drawing.Point(75, 3);
+            this.txtIdOficialStoreParamIn.Location = new System.Drawing.Point(74, 3);
             this.txtIdOficialStoreParamIn.MaxLength = 10;
             this.txtIdOficialStoreParamIn.Name = "txtIdOficialStoreParamIn";
             this.txtIdOficialStoreParamIn.Size = new System.Drawing.Size(161, 22);
@@ -1403,6 +1403,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(86, 170);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(494, 361);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 23;
             this.pictureBox2.TabStop = false;
             // 

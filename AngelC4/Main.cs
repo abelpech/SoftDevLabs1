@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /*
- Class Software Development in Propietary Platforms
+ Class Software Development in Proprietary Platforms
  Instructor - Engineer Angel Maldonado
  Developer Abel Pech / Marc Albrand
    

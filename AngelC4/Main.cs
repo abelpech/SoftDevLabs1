@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 /*
  Class Software Development in Proprietary Platforms
@@ -26,7 +28,7 @@ namespace AngelC4
         bool Open = false;
         object senderr;
         string path;
-
+        
         EventArgs ee;
         private SqlConnection conexion = new SqlConnection("server=PECH ; database=TestDB ; integrated security = true");
         public Main()
@@ -778,5 +780,309 @@ namespace AngelC4
             }
 
         }
+
+        //FLOW LAYOUT PANEL
+
+        private void btnFlowLayout_Click(object sender, EventArgs e)
+        {
+            flowLP.Controls.Clear();
+            //Data Ordered By ASC - Names
+            SqlDataAdapter da = new SqlDataAdapter("select [IdEmpleado], [IdOficial], [NombreCompleto]," + "[Puesto],[FechaNacimiento] from [Empleados] order by [NombreCompleto] ASC", conexion);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Button btn = new Button();
+                btn.Name = "btn" + dt.Rows[i][1];
+                btn.Tag = dt.Rows[i][1];
+                btn.Text = dt.Rows[i][2].ToString();
+                btn.Font = new Font("Arial", 14f, FontStyle.Bold);
+                btn.BackColor = Color.Green;
+                btn.Height = 57;
+                btn.Width = 116;
+                //btn.Click += ;
+                //btn.Enter += ;
+                //btn.Leave += ;
+
+                flowLP.Controls.Add(btn);
+            }
+        }
+
+        /*
+         1. Agregar un grupo de radio buttons o un elemento de su preferencia en la parte superior.
+                a.	Radio button 1 al seleccionarlo, los elementos dentro del panel al generarse se organicen en una dirección de arriba a bajo.
+                b.	Radio button 2 al seleccionarlo, los elementos dentro del panel al generarse se organicen en una dirección de bajo a arriba.
+                c.	Radio button 3 al seleccionarlo, los elementos dentro del panel al generarse se organicen en una dirección de derecha a izquierda.
+                d.	Radio button 4 al seleccionarlo, los elementos dentro del panel al generarse se organicen en una dirección de izquierda a derecha. 
+         */
+        private void rBtnArribaAbajo_CheckedChanged(object sender, EventArgs e)
+        {
+            this.flowLP.FlowDirection = FlowDirection.TopDown;
+
+        }
+
+        private void rBtnAbajoArriba_CheckedChanged(object sender, EventArgs e)
+        {
+            this.flowLP.FlowDirection = FlowDirection.BottomUp;
+
+        }
+
+        private void rBtnDerechaIzquierda_CheckedChanged(object sender, EventArgs e)
+        {
+            this.flowLP.FlowDirection = FlowDirection.RightToLeft;
+
+        }
+
+        private void rBtnIzquierdaDerecha_CheckedChanged(object sender, EventArgs e)
+        {
+            this.flowLP.FlowDirection = FlowDirection.LeftToRight;
+
+        }
+        /*
+         2.	Agregar un grupo de radio buttons o un elemento de su preferencia en la parte superior.
+                a.	Radio button 1 al seleccionarlo, los elementos dentro del panel desplegaran la número de parte de la tabla productos.
+                b.	Radio button 2 al seleccionarlo, los elementos dentro del panel desplegaran la imagen de la tabla productos.
+        */
+        private void rBtnParte_CheckedChanged(object sender, EventArgs e)
+        {
+            flowLP.Controls.Clear();
+            
+            SqlDataAdapter da = new SqlDataAdapter("select [idProductos] from [Productos]", conexion);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Button btn = new Button();
+                btn.Name = "btn" + dt.Rows[i][0];
+                btn.Tag = dt.Rows[i][0];
+                btn.Text = dt.Rows[i][0].ToString();
+                btn.Font = new Font("Arial", 14f, FontStyle.Bold);
+                btn.BackColor = Color.Green;
+                btn.Height = 57;
+                btn.Width = 116;
+                //btn.Click += ;
+                //btn.Enter += ;
+                //btn.Leave += ;
+
+                flowLP.Controls.Add(btn);
+            }
+        }
+
+        private void rBtnImagen_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                flowLP.Controls.Clear();
+                conexion.Open();
+                //ASC is default on SQL Database Select
+                SqlCommand cmd = new SqlCommand("select[Imagen] from[Productos]", conexion);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "dt");
+                //Count of Rows / An empty collection is returned if no DataTable objects exist.
+                int c = ds.Tables["dt"].Rows.Count;
+                //MessageBox.Show(c.ToString());
+
+                for(int i= 0; i < c ; i++)
+                {
+                    Byte[] byteData = new Byte[0];
+                    byteData = (Byte[])(ds.Tables["dt"].Rows[i]["Imagen"]);
+                    MemoryStream stmData = new MemoryStream(byteData);
+                    PictureBox foto = new PictureBox();
+                    foto.Image = Image.FromStream(stmData);
+                    foto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    foto.Size = new System.Drawing.Size(180, 180);
+                    flowLP.Controls.Add(foto);
+                    flowLP.AutoScroll = true;
+
+                }
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString(), "Advertencia", MessageBoxButtons.OK);
+            }
+            
+         
+
+        }
+
+       
+
+        /*
+         * Boton Consulta de TAB Excel
+        */
+        private void button8_Click(object sender, EventArgs e)
+        {
+            conexion.Open();
+            {
+                this.dataGridView2.EditMode = DataGridViewEditMode.EditProgrammatically;
+                this.dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+
+                SqlCommand cmd = new SqlCommand("VerEmpleados", conexion);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //llenado de data table
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                dataGridView2.DataSource = dt;
+
+
+            }
+            conexion.Close();
+        }
+
+
+
+        /*
+         * Boton EXPORTAR de TAB Excel
+        */
+
+        /*
+        
+        As described in http://social.msdn.microsoft.com/Forums/vstudio/en-US/c9e83756-4ae2-4ed4-b154-1537f3bb3a22/cant-find-microsoftofficeinteropexceldll?forum=netfxsetup
+
+        On the Project menu, click "Add Reference."
+
+        On the COM tab, click Microsoft Excel Object Library, and then click Select. In Visual Studio 2012, locate Microsoft Excel 14.0 (or other version) Object Library on the COM tab.
+
+        Click OK in the Add References dialog box to accept your selections. If you are prompted to generate wrappers for the libraries that you selected, click “Yes”.
+        
+        */
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel?redirectedfrom=MSDN&view=excel-
+            //ExportToExcel(); 
+            // creating Excel Application 
+            Excel._Application app = new Excel.Application();
+            // creating new WorkBook within Excel application 
+            Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook 
+            Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program
+            app.Visible = true;
+            // get the reference of first sheet. By default its name is Sheetl. 
+            // store its reference to worksheet 
+            worksheet = workbook.Sheets[1];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet 
+
+            worksheet.Name = "Consulta";
+            // storing header part in Excel 
+            for (int i = 1; i < dataGridView2.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = dataGridView2.Columns[i - 1].HeaderText;
+
+            }
+            // storing Each row and column value to excel sheet 
+            for (int i = 0; i < dataGridView2.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < dataGridView2.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = dataGridView2.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            // save the application
+            workbook.SaveAs("D:\\Consulta1.xlsx", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            //  workbook.SaveAs("C:\\Consulta.xls", Excel.XlFileFormat.xlWorkbookNormal, System.Reflection.Missing.Value, System.Reflection.Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+            //  workbook.SaveAs("C:\\MyExcelTestTest", Excel.XlFileFormat.xlExcel12,System.Reflection.Missing.Value, Sysstem.Reflection.Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, System.Reflection.Missing.Value,System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+            //  workbook.SaveAs(@"c:\test2.xls");
+
+            // Exit from the application 
+            app.Quit();
+        }
+       
+        
+        
+        /*
+
+
+        3.	En la tabla producto agregar el campo Cantidad y CantidadMinima
+         4.	Al dar presionar cualquier el botón del panel se deberá mostrar la imagen del registro en cuestión en un picturebox y la cantidad del producto en un label.
+                 a.	Al desplegar la cantidad de producto en el label si la cantidad es mayor a la mínima, el color de las letras en negro.
+                 b.	Al desplegar la cantidad de producto en el label si la cantidad es mayor a 0 y igual o menor que la mínima, el color de las letras en amarillo o naranja.
+                 c.	Al desplegar la cantidad de producto en el label si la cantidad es igual o menor a 0, el color de las letras en rojo
+*/
+        private void btnEventos_Click(object sender, EventArgs e)
+        {
+            flowLP.Controls.Clear();
+            //Data Ordered By ASC - Names
+            SqlDataAdapter da = new SqlDataAdapter("select [idProductos], [Imagen], [numparte],[descripcion], [cantidad], [cantidadminima] from [Productos]", conexion);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Button btn = new Button();
+                btn.Name = "btn" + dt.Rows[i][2];
+                btn.Tag = dt.Rows[i][4];
+                int cantidadminima = (int)dt.Rows[i][5];
+                btn.Text = dt.Rows[i][2].ToString();
+                btn.Font = new Font("Arial", 14f, FontStyle.Bold);
+                btn.BackColor = Color.Beige;
+                btn.Height = 57;
+                btn.Width = 116;
+                btn.Click += btnNew_Click;
+                if ((int)btn.Tag > cantidadminima)
+                {
+                    btn.ForeColor = Color.Black;
+                }
+                else if ((int)btn.Tag < cantidadminima && (int)btn.Tag > 0)
+                {
+                    btn.ForeColor = Color.Orange;
+                }
+                else if ((int)btn.Tag == 0)
+                {
+                    btn.ForeColor = Color.Red;
+
+                }
+                flowLP.Controls.Add(btn);
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            //Process.Start((clickedButton.Tag).ToString());
+            //lCantidad.Text = "Cantidad: " + dt.Rows[i][4].ToString();
+            lCantidad.Text = "Cantidad: " + clickedButton.Tag.ToString();
+            //
+
+            conexion.Open();
+            //ASC is default on SQL Database Select
+            SqlCommand cmd = new SqlCommand("SELECT [IdProductos], [Imagen] FROM [Productos] ORDER BY [IdProductos] DESC", conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //A DataSet is not a table. A DataSet contains DataTables
+            DataSet ds = new DataSet();
+            da.Fill(ds, "dt");
+            int c = ds.Tables["dt"].Rows.Count;
+            
+            if (c > 0)
+            {
+                Byte[] byteData = new byte[0];
+                byteData = (Byte[])(ds.Tables["dt"].Rows[(int)clickedButton.Tag]["Imagen"]);
+                MemoryStream stmData = new MemoryStream(byteData);
+                pBox.Image = Image.FromStream(stmData);
+                pBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            conexion.Close();
+            //
+
+        }
+        
     }
 }

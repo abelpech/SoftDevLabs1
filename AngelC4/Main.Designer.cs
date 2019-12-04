@@ -149,9 +149,27 @@
             this.label36 = new System.Windows.Forms.Label();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.rBtnIzquierdaDerecha = new System.Windows.Forms.RadioButton();
+            this.rBtnDerechaIzquierda = new System.Windows.Forms.RadioButton();
+            this.rBtnAbajoArriba = new System.Windows.Forms.RadioButton();
+            this.rBtnArribaAbajo = new System.Windows.Forms.RadioButton();
+            this.label37 = new System.Windows.Forms.Label();
+            this.btnFlowLayout = new System.Windows.Forms.Button();
+            this.flowLP = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label38 = new System.Windows.Forms.Label();
+            this.rBtnParte = new System.Windows.Forms.RadioButton();
+            this.rBtnImagen = new System.Windows.Forms.RadioButton();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.btnEventos = new System.Windows.Forms.Button();
+            this.pBox = new System.Windows.Forms.PictureBox();
+            this.lCantidad = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -179,6 +197,12 @@
             this.tabPage11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage13.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tabPage14.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1038,7 +1062,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.03802F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.96198F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 275F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 281F));
             this.tableLayoutPanel2.Controls.Add(this.label26, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.Consultar, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtIdOficialStoreParamIn, 1, 0);
@@ -1064,7 +1088,7 @@
             this.Consultar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Consultar.FlatAppearance.BorderSize = 0;
             this.Consultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Consultar.Location = new System.Drawing.Point(241, 3);
+            this.Consultar.Location = new System.Drawing.Point(235, 3);
             this.Consultar.Name = "Consultar";
             this.Consultar.Size = new System.Drawing.Size(91, 91);
             this.Consultar.TabIndex = 0;
@@ -1073,10 +1097,10 @@
             // 
             // txtIdOficialStoreParamIn
             // 
-            this.txtIdOficialStoreParamIn.Location = new System.Drawing.Point(74, 3);
+            this.txtIdOficialStoreParamIn.Location = new System.Drawing.Point(72, 3);
             this.txtIdOficialStoreParamIn.MaxLength = 10;
             this.txtIdOficialStoreParamIn.Name = "txtIdOficialStoreParamIn";
-            this.txtIdOficialStoreParamIn.Size = new System.Drawing.Size(161, 22);
+            this.txtIdOficialStoreParamIn.Size = new System.Drawing.Size(157, 22);
             this.txtIdOficialStoreParamIn.TabIndex = 1;
             // 
             // flowLayoutPanel2
@@ -1427,6 +1451,13 @@
             // 
             // tabPage13
             // 
+            this.tabPage13.Controls.Add(this.lCantidad);
+            this.tabPage13.Controls.Add(this.pBox);
+            this.tabPage13.Controls.Add(this.btnEventos);
+            this.tabPage13.Controls.Add(this.panel3);
+            this.tabPage13.Controls.Add(this.panel2);
+            this.tabPage13.Controls.Add(this.btnFlowLayout);
+            this.tabPage13.Controls.Add(this.flowLP);
             this.tabPage13.Location = new System.Drawing.Point(4, 25);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Size = new System.Drawing.Size(1123, 686);
@@ -1434,8 +1465,104 @@
             this.tabPage13.Text = "FlowLayout";
             this.tabPage13.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rBtnIzquierdaDerecha);
+            this.panel2.Controls.Add(this.rBtnDerechaIzquierda);
+            this.panel2.Controls.Add(this.rBtnAbajoArriba);
+            this.panel2.Controls.Add(this.rBtnArribaAbajo);
+            this.panel2.Controls.Add(this.label37);
+            this.panel2.Location = new System.Drawing.Point(863, 157);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(252, 172);
+            this.panel2.TabIndex = 2;
+            // 
+            // rBtnIzquierdaDerecha
+            // 
+            this.rBtnIzquierdaDerecha.AutoSize = true;
+            this.rBtnIzquierdaDerecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBtnIzquierdaDerecha.Location = new System.Drawing.Point(17, 132);
+            this.rBtnIzquierdaDerecha.Name = "rBtnIzquierdaDerecha";
+            this.rBtnIzquierdaDerecha.Size = new System.Drawing.Size(204, 29);
+            this.rBtnIzquierdaDerecha.TabIndex = 4;
+            this.rBtnIzquierdaDerecha.TabStop = true;
+            this.rBtnIzquierdaDerecha.Text = "Izquierda - Derecha";
+            this.rBtnIzquierdaDerecha.UseVisualStyleBackColor = true;
+            this.rBtnIzquierdaDerecha.CheckedChanged += new System.EventHandler(this.rBtnIzquierdaDerecha_CheckedChanged);
+            // 
+            // rBtnDerechaIzquierda
+            // 
+            this.rBtnDerechaIzquierda.AutoSize = true;
+            this.rBtnDerechaIzquierda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBtnDerechaIzquierda.Location = new System.Drawing.Point(17, 103);
+            this.rBtnDerechaIzquierda.Name = "rBtnDerechaIzquierda";
+            this.rBtnDerechaIzquierda.Size = new System.Drawing.Size(204, 29);
+            this.rBtnDerechaIzquierda.TabIndex = 3;
+            this.rBtnDerechaIzquierda.TabStop = true;
+            this.rBtnDerechaIzquierda.Text = "Derecha - Izquierda";
+            this.rBtnDerechaIzquierda.UseVisualStyleBackColor = true;
+            this.rBtnDerechaIzquierda.CheckedChanged += new System.EventHandler(this.rBtnDerechaIzquierda_CheckedChanged);
+            // 
+            // rBtnAbajoArriba
+            // 
+            this.rBtnAbajoArriba.AutoSize = true;
+            this.rBtnAbajoArriba.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBtnAbajoArriba.Location = new System.Drawing.Point(17, 73);
+            this.rBtnAbajoArriba.Name = "rBtnAbajoArriba";
+            this.rBtnAbajoArriba.Size = new System.Drawing.Size(153, 29);
+            this.rBtnAbajoArriba.TabIndex = 2;
+            this.rBtnAbajoArriba.TabStop = true;
+            this.rBtnAbajoArriba.Text = "Abajo - Arriba";
+            this.rBtnAbajoArriba.UseVisualStyleBackColor = true;
+            this.rBtnAbajoArriba.CheckedChanged += new System.EventHandler(this.rBtnAbajoArriba_CheckedChanged);
+            // 
+            // rBtnArribaAbajo
+            // 
+            this.rBtnArribaAbajo.AutoSize = true;
+            this.rBtnArribaAbajo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBtnArribaAbajo.Location = new System.Drawing.Point(17, 46);
+            this.rBtnArribaAbajo.Name = "rBtnArribaAbajo";
+            this.rBtnArribaAbajo.Size = new System.Drawing.Size(153, 29);
+            this.rBtnArribaAbajo.TabIndex = 1;
+            this.rBtnArribaAbajo.TabStop = true;
+            this.rBtnArribaAbajo.Text = "Arriba - Abajo";
+            this.rBtnArribaAbajo.UseVisualStyleBackColor = true;
+            this.rBtnArribaAbajo.CheckedChanged += new System.EventHandler(this.rBtnArribaAbajo_CheckedChanged);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(4, 11);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(229, 20);
+            this.label37.TabIndex = 0;
+            this.label37.Text = "Direccion de Flow Layout:";
+            // 
+            // btnFlowLayout
+            // 
+            this.btnFlowLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFlowLayout.Location = new System.Drawing.Point(863, 59);
+            this.btnFlowLayout.Name = "btnFlowLayout";
+            this.btnFlowLayout.Size = new System.Drawing.Size(216, 71);
+            this.btnFlowLayout.TabIndex = 1;
+            this.btnFlowLayout.Text = "Generar FlowLayout";
+            this.btnFlowLayout.UseVisualStyleBackColor = true;
+            this.btnFlowLayout.Click += new System.EventHandler(this.btnFlowLayout_Click);
+            // 
+            // flowLP
+            // 
+            this.flowLP.BackColor = System.Drawing.Color.Silver;
+            this.flowLP.Location = new System.Drawing.Point(8, 35);
+            this.flowLP.Name = "flowLP";
+            this.flowLP.Size = new System.Drawing.Size(830, 333);
+            this.flowLP.TabIndex = 0;
+            // 
             // tabPage14
             // 
+            this.tabPage14.Controls.Add(this.button9);
+            this.tabPage14.Controls.Add(this.button8);
+            this.tabPage14.Controls.Add(this.dataGridView2);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Size = new System.Drawing.Size(1123, 686);
@@ -1447,6 +1574,112 @@
             // 
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.rBtnImagen);
+            this.panel3.Controls.Add(this.rBtnParte);
+            this.panel3.Controls.Add(this.label38);
+            this.panel3.Location = new System.Drawing.Point(21, 391);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(301, 209);
+            this.panel3.TabIndex = 3;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(14, 13);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(100, 20);
+            this.label38.TabIndex = 0;
+            this.label38.Text = "Productos:";
+            // 
+            // rBtnParte
+            // 
+            this.rBtnParte.AutoSize = true;
+            this.rBtnParte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBtnParte.Location = new System.Drawing.Point(18, 59);
+            this.rBtnParte.Name = "rBtnParte";
+            this.rBtnParte.Size = new System.Drawing.Size(180, 29);
+            this.rBtnParte.TabIndex = 1;
+            this.rBtnParte.TabStop = true;
+            this.rBtnParte.Text = "Numero de Parte";
+            this.rBtnParte.UseVisualStyleBackColor = true;
+            this.rBtnParte.CheckedChanged += new System.EventHandler(this.rBtnParte_CheckedChanged);
+            // 
+            // rBtnImagen
+            // 
+            this.rBtnImagen.AutoSize = true;
+            this.rBtnImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBtnImagen.Location = new System.Drawing.Point(18, 104);
+            this.rBtnImagen.Name = "rBtnImagen";
+            this.rBtnImagen.Size = new System.Drawing.Size(98, 29);
+            this.rBtnImagen.TabIndex = 2;
+            this.rBtnImagen.TabStop = true;
+            this.rBtnImagen.Text = "Imagen";
+            this.rBtnImagen.UseVisualStyleBackColor = true;
+            this.rBtnImagen.CheckedChanged += new System.EventHandler(this.rBtnImagen_CheckedChanged);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(44, 147);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(770, 450);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(176, 49);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(204, 70);
+            this.button8.TabIndex = 1;
+            this.button8.Text = "Consulta";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(465, 49);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(214, 70);
+            this.button9.TabIndex = 2;
+            this.button9.Text = "Exportar";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // btnEventos
+            // 
+            this.btnEventos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEventos.Location = new System.Drawing.Point(365, 431);
+            this.btnEventos.Name = "btnEventos";
+            this.btnEventos.Size = new System.Drawing.Size(181, 116);
+            this.btnEventos.TabIndex = 4;
+            this.btnEventos.Text = "Generer FlowLayout con Eventos";
+            this.btnEventos.UseVisualStyleBackColor = true;
+            this.btnEventos.Click += new System.EventHandler(this.btnEventos_Click);
+            // 
+            // pBox
+            // 
+            this.pBox.Location = new System.Drawing.Point(586, 427);
+            this.pBox.Name = "pBox";
+            this.pBox.Size = new System.Drawing.Size(149, 120);
+            this.pBox.TabIndex = 5;
+            this.pBox.TabStop = false;
+            // 
+            // lCantidad
+            // 
+            this.lCantidad.AutoSize = true;
+            this.lCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lCantidad.Location = new System.Drawing.Point(586, 554);
+            this.lCantidad.Name = "lCantidad";
+            this.lCantidad.Size = new System.Drawing.Size(97, 25);
+            this.lCantidad.TabIndex = 6;
+            this.lCantidad.Text = "Cantidad:";
             // 
             // Main
             // 
@@ -1498,6 +1731,15 @@
             this.tabPage11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1627,6 +1869,24 @@
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.TabPage tabPage13;
         private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.FlowLayoutPanel flowLP;
+        private System.Windows.Forms.Button btnFlowLayout;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton rBtnIzquierdaDerecha;
+        private System.Windows.Forms.RadioButton rBtnDerechaIzquierda;
+        private System.Windows.Forms.RadioButton rBtnAbajoArriba;
+        private System.Windows.Forms.RadioButton rBtnArribaAbajo;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.RadioButton rBtnImagen;
+        private System.Windows.Forms.RadioButton rBtnParte;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btnEventos;
+        private System.Windows.Forms.PictureBox pBox;
+        private System.Windows.Forms.Label lCantidad;
     }
 }
 
